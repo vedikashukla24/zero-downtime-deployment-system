@@ -35,3 +35,12 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build -t flask-v1 .
+      - name: Save Docker Image
+        run: |
+          docker save flask-v1 -o flask-v1.tar
+
+      - name: Upload Docker Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flask-v1-image
+          path: flask-v1.tar
